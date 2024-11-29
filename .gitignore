@@ -1,0 +1,36 @@
+# Node modules
+node_modules/
+
+# Firebase
+.firebase/
+
+# Logs
+logs/
+*.log
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm/
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Mac system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+
+# IDE specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
