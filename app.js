@@ -1,8 +1,7 @@
 // Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
-import { initializeApp } from "firebase/app";
-
-import { getAnalytics } from "firebase/analytics";
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -33,28 +32,31 @@ const firebaseConfig = {
 
 
 // Initialize Firebase
-
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-const analytics = getAnalytics(app);
-
+// Get references to your form and list elements
 const dataForm = document.getElementById('dataForm');
 const dataList = document.getElementById('dataList');
 
 // Submit data to Firestore
-dataForm.addEventListener('submit', (e) => {
+dataForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const userInput = document.getElementById('userInput').value;
-    db.collection('sharedData').add({
-        content: userInput,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(() => {
+    try {
+        await addDoc(collection(db, 'sharedData'), {
+            content: userInput,
+            timestamp: serverTimestamp()
+        });
         dataForm.reset();
-    });
+    } catch (error) {
+        console.error("Error adding document: ", error);
+    }
 });
 
 // Retrieve and display data in real-time
-db.collection('sharedData').orderBy('timestamp', 'desc').onSnapshot((snapshot) => {
+const q = query(collection(db, 'sharedData'), orderBy('timestamp', 'desc'));
+onSnapshot(q, (snapshot) => {
     dataList.innerHTML = '';
     snapshot.forEach((doc) => {
         const li = document.createElement('li');
