@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Collaborative Website</title>
-    <!-- Include Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js"></script>
+    <title>Ottolinis Wunschliste</title>
     <script type="module" src="app.js"></script>
 </head>
 <body>
     <h1>Enter Information</h1>
     <form id="dataForm">
-        <input type="text" id="userInput" placeholder="Type something..." required>
-        <button type="submit">Submit</button>
+        <input type="text" id="nameInput" placeholder="Dein Name" required>
+        <input type="text" id="wishInput" placeholder="Dein Wunsch" required>
+        <input type="url" id="urlInput" placeholder="Adresse falls vorhanden" required>  
+        <button type="submit">Speichern</button>
     </form>
-    <h2>Shared Information:</h2>
+    <h2>Alle Wünsche:</h2>
     <ul id="dataList"></ul>
-
-    <script type="module" src="app.js"></script>
 </body>
 </html>
