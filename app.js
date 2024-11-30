@@ -79,7 +79,7 @@ window.addEventListener('DOMContentLoaded', () => {
             console.error("Error adding document: ", error);
         }
     });
-
+    const q = query(collection(db, 'sharedData'), orderBy('timestamp', 'desc'));
     // Function to render a single list item
     function renderListItem(docSnapshot) {
         const data = docSnapshot.data();
@@ -177,7 +177,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     // Retrieve and display data in real-time
-    const q = query(collection(db, 'sharedData'), orderBy('timestamp', 'desc'));
     onSnapshot(q, (snapshot) => {
         snapshot.forEach((docSnapshot) => {
             renderListItem(docSnapshot);
