@@ -32,6 +32,7 @@ const messageMap = new Map();
 
 // Ensure the DOM is fully loaded before running the script
 window.addEventListener('DOMContentLoaded', () => {
+    const q = query(collection(db, 'sharedData'), orderBy('timestamp', 'desc'));
     // Get references to your form and list elements
     const dataForm = document.getElementById('dataForm');
     const dataList = document.getElementById('dataList');
@@ -79,9 +80,7 @@ window.addEventListener('DOMContentLoaded', () => {
             console.error("Error adding document: ", error);
         }
     });
-
-    // Define the query to retrieve data (Place this before using 'q')
-    const q = query(collection(db, 'sharedData'), orderBy('timestamp', 'desc'));
+    
 
     // Function to render a single list item
     function renderListItem(docSnapshot) {
