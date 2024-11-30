@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot, doc, runTransaction } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
 
 // https://firebase.google.com/docs/web/setup#available-libraries
