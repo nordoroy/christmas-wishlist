@@ -14,10 +14,10 @@ import {
 
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
+    apiKey: "YOUR_API_KEY", // Ensure this is your actual API key
     authDomain: "christmas-wishlist-e4d46.firebaseapp.com",
     projectId: "christmas-wishlist-e4d46",
-    storageBucket: "christmas-wishlist-e4d46.appspot.com",
+    storageBucket: "christmas-wishlist-e4d46.appspot.com", // Corrected
     messagingSenderId: "74340929706",
     appId: "1:74340929706:web:d53d686bc7d85212d980d3",
     measurementId: "G-P71EZG24QD"
@@ -79,7 +79,10 @@ window.addEventListener('DOMContentLoaded', () => {
             console.error("Error adding document: ", error);
         }
     });
+
+    // Define the query to retrieve data (Place this before using 'q')
     const q = query(collection(db, 'sharedData'), orderBy('timestamp', 'desc'));
+
     // Function to render a single list item
     function renderListItem(docSnapshot) {
         const data = docSnapshot.data();
@@ -146,6 +149,12 @@ window.addEventListener('DOMContentLoaded', () => {
                         messageSpan.textContent = messageData.text;
                         messageSpan.style.color = messageData.color;
                         messageMap.set(docSnapshot.id, messageData);
+
+                        // Optionally remove the red message after 10 seconds
+                        setTimeout(() => {
+                            messageMap.delete(docSnapshot.id);
+                            renderListItem(docSnapshot);
+                        }, 10000);
                     }
                 });
             } catch (error) {
@@ -157,6 +166,12 @@ window.addEventListener('DOMContentLoaded', () => {
                 messageSpan.textContent = messageData.text;
                 messageSpan.style.color = messageData.color;
                 messageMap.set(docSnapshot.id, messageData);
+
+                // Optionally remove the error message after 10 seconds
+                setTimeout(() => {
+                    messageMap.delete(docSnapshot.id);
+                    renderListItem(docSnapshot);
+                }, 10000);
             }
         });
 
