@@ -8,7 +8,8 @@ const firebaseConfig = {
   apiKey: "AIzaSyAjk9lfkW2Pt2K38fRvTyZKNzIyFY2M0O4",
   authDomain: "christmas-wishlist-e4d46.firebaseapp.com",
   projectId: "christmas-wishlist-e4d46",
-  storageBucket: "christmas-wishlist-e4d46.firebasestorage.app",
+  // old storageBucket: "christmas-wishlist-e4d46.firebasestorage.app",
+  storageBucket: "christmas-wishlist-e4d46.appspot.com",
   messagingSenderId: "74340929706",
   appId: "1:74340929706:web:d53d686bc7d85212d980d3",
   measurementId: "G-P71EZG24QD"
@@ -70,8 +71,8 @@ dataForm.addEventListener('submit', async (e) => {
 const q = query(collection(db, 'sharedData'), orderBy('timestamp', 'desc'));
 onSnapshot(q, (snapshot) => {
     dataList.innerHTML = '';
-    snapshot.forEach((doc) => {
-        const data = doc.data();
+    snapshot.forEach((docSnapshot) => {
+        const data = docSnapshot.data();
         const li = document.createElement('li');
 
         let content = `<strong>${data.name}</strong>: ${data.content}`;
@@ -94,7 +95,7 @@ onSnapshot(q, (snapshot) => {
 
         //handle Reserve button click
         reserveButton.addEventListener('click', async () => {
-            const wishReference = doc(db, 'sharedData', doc.id);
+            const wishReference = doc(db, 'sharedData', docSnapshot.id);
             try {
                 await runTransaction(db, async (transaction) => {
                     const wishDoc = await transaction.get(wishReference);
@@ -113,7 +114,7 @@ onSnapshot(q, (snapshot) => {
                 });
             } catch (error) {
                 console.error("Transaction failed: ", error);
-                messageSpan.textContent = "Fehler beim Reservieren!";
+                messageSpan.textContent = "Fehler beim Reservieren!" + error;
                 messageSpan.style.color = "red";
             }
         });
