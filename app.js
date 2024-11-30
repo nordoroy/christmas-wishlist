@@ -177,6 +177,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     // Retrieve and display data in real-time
+    const q = query(collection(db, 'sharedData'), orderBy('timestamp', 'desc'));
     onSnapshot(q, (snapshot) => {
         snapshot.forEach((docSnapshot) => {
             renderListItem(docSnapshot);
