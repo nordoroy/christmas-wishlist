@@ -42,14 +42,15 @@ dataForm.addEventListener('submit', async (e) => {
           '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
 
         if (!urlPattern.test(urlInput)) {
-            alert("Please enter a valid URL or leave the URL field empty.");
+            alert("Bitte eine gültige URL eingeben oder das Feld leer lassen");
             return;
         }
     }
     const data = {
         name: nameInput,
         content: wishInput,
-        timestamp: serverTimestamp()
+        timestamp: serverTimestamp(),
+        reserved: false
     };
     if (priceInput) {
         data.price = priceInput;
@@ -82,6 +83,51 @@ onSnapshot(q, (snapshot) => {
         }
 
         li.innerHTML = content;
+
+        const reserveButton = document.createElement('button');
+        reserveButton.textContent = "Reservieren";
+        reserveButton.style.marginLeft = "10px";
+
+        //Message element
+        const messageSpan = document.createElement('span');
+        messageSpan.style.marginLeft = "10px";
+
+        //handle Reserve button click
+        reserveButton.addEventListener('click', async () => {
+            const wishReference = doc(db, 'sharedData', docSnapshot.id);
+            try {
+                await runTransaction(db, async (transaction) => {
+                    const wishDoc = await transaction.get(wishReference);
+                    if (!wishDoc.exists()) {
+                        throw "Document does not exist!";
+                    }
+                    const currentReserved = wishDoc.data().reserved;
+                    if (!currentReserved) {
+                        transaction.update(wishReference, {reserved: true});
+                        messageSpan.textContent = "Du hast den Wunsch reserviert!";
+                        messageSpan.style.color = "green";
+                    } else {
+                        messageSpan.textContent = "Der Wunsch ist bereits reserviert!";
+                        messageSpan.style.color = "red";
+                    }
+                });
+            } catch (error) {
+                console.error("Transaction failed: ", error);
+                messageSpan.textContent = "Fehler beim Reservieren!";
+                messageSpan.style.color = "red";
+            }
+        });
+
+        //disable button if already reserved
+        if (data.reserved) {
+            reserveButton.disabled = true;
+            messageSpan.textContent = "Der Wunsch ist bereits reserviert!";
+            messageSpan.style.color = "red";
+        }
+        //Append button and message to the list item
+        li.appendChild(reserveButton);
+        li.appendChild(messageSpan);
+    
         dataList.appendChild(li);
     });
 });
