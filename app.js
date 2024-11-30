@@ -26,6 +26,7 @@ dataForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const nameInput = document.getElementById('nameInput').value.trim();
     const stringInput = document.getElementById('wishInput').value.trim();
+    const priceInput = document.getElementById('priceInput').value.trim();
     const urlInput = document.getElementById('urlInput').value.trim();
     if (!nameInput || !stringInput) {
         alert("Bitte Name und Wunsch eingeben");
@@ -49,6 +50,9 @@ dataForm.addEventListener('submit', async (e) => {
         name: nameInput,
         content: stringInput,
         timestamp: serverTimestamp()
+    };
+    if (priceInput) {
+        data.price = priceInput;
     };
     if (urlInput) {
         data.url = urlInput;
