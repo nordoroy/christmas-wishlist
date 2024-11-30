@@ -94,7 +94,7 @@ onSnapshot(q, (snapshot) => {
 
         //handle Reserve button click
         reserveButton.addEventListener('click', async () => {
-            const wishReference = doc(db, 'sharedData', docSnapshot.id);
+            const wishReference = doc(db, 'sharedData', doc.id);
             try {
                 await runTransaction(db, async (transaction) => {
                     const wishDoc = await transaction.get(wishReference);
