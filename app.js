@@ -120,11 +120,11 @@ onSnapshot(q, (snapshot) => {
         });
 
         //disable button if already reserved
-        if (data.reserved) {
-            reserveButton.disabled = true;
-            messageSpan.textContent = "Der Wunsch ist bereits reserviert!";
-            messageSpan.style.color = "red";
-        }
+        //if (data.reserved) {
+        //    reserveButton.disabled = true;
+        //    messageSpan.textContent = "Der Wunsch ist bereits reserviert!";
+        //    messageSpan.style.color = "red";
+        //}
         //Append button and message to the list item
         li.appendChild(reserveButton);
         li.appendChild(messageSpan);
