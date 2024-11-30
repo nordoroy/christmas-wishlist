@@ -25,10 +25,10 @@ const dataList = document.getElementById('dataList');
 dataForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const nameInput = document.getElementById('nameInput').value.trim();
-    const stringInput = document.getElementById('wishInput').value.trim();
+    const wishInput = document.getElementById('wishInput').value.trim();
     const priceInput = document.getElementById('priceInput').value.trim();
     const urlInput = document.getElementById('urlInput').value.trim();
-    if (!nameInput || !stringInput) {
+    if (!nameInput || !wishInput) {
         alert("Bitte Name und Wunsch eingeben");
         return;
     }
@@ -48,7 +48,7 @@ dataForm.addEventListener('submit', async (e) => {
     }
     const data = {
         name: nameInput,
-        content: stringInput,
+        content: wishInput,
         timestamp: serverTimestamp()
     };
     if (priceInput) {
@@ -74,7 +74,7 @@ onSnapshot(q, (snapshot) => {
         const li = document.createElement('li');
 
         let content = `<strong>${data.name}</strong>: ${data.content}`;
-        if(data.price) {
+        if(data.price !== undefined && data.price !== '') {
             content += ` - CHF ${data.price}`;
         }
         if(data.url) {
