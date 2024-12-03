@@ -38,7 +38,7 @@ input[type="text"] {
 }
 
 /* Submit button */
-button {
+button[type="submit"] {
     background-color: #4aaf6e; /* Pastel green for a Christmas accent */
     color: white;
     border: none;
