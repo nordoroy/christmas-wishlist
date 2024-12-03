@@ -1,0 +1,107 @@
+/* General body styling for a Christmas feel */
+body {
+    background-color: #fefaf4; /* Light beige background for a cozy feel */
+    color: #2d2d2d; /* Dark gray for good contrast */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 1rem;
+}
+
+/* Header styling */
+h1, h2 {
+    text-align: center;
+    color: #ba3a36; /* Pastel red for a Christmas vibe */
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: #ffffff; /* White background for focus */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Input fields */
+input[type="text"] {
+    padding: 0.75rem;
+    border: 1px solid #d4d4d4;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    width: 100%;
+}
+
+/* Submit button */
+button[type="submit"] {
+    background-color: #4aaf6e; /* Pastel green for a Christmas accent */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #3d9459; /* Slightly darker green on hover */
+}
+
+/* Wishlist items styling */
+#dataList {
+    list-style-type: none;
+    padding: 0;
+    margin: 2rem 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#dataList li {
+    background-color: #fff4e6; /* Light pastel orange for variety */
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #f0e0d1;
+    border-radius: 6px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#dataList li strong {
+    color: #ba3a36; /* Pastel red for names */
+}
+
+/* Link styling */
+a {
+    color: #3c84d4; /* Pastel blue for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #2e68aa; /* Slightly darker blue on hover */
+}
+
+/* Mobile-friendly adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    form {
+        max-width: 100%;
+        padding: 1rem;
+    }
+
+    #dataList li {
+        padding: 0.75rem;
+    }
+}
