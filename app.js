@@ -99,6 +99,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const reserveButton = document.createElement('button');
         reserveButton.textContent = "Reservieren";
+        reserveButton.className = "custom-button";
         reserveButton.style.marginLeft = "10px";
 
         // Message element
