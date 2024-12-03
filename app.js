@@ -87,12 +87,12 @@ window.addEventListener('DOMContentLoaded', () => {
         const data = docSnapshot.data();
         const li = document.createElement('li');
 
-        let content = `<strong>${data.name}</strong>: ${data.content}`;
+        let content = `<strong>${data.name}</strong> ${data.content}`;
         if (data.price !== undefined && data.price !== '') {
             content += ` - CHF ${data.price}`;
         }
         if (data.url) {
-            content += ` - <a href="${data.url}" target="_blank">Link</a>`;
+            content += `  <a href="${data.url}" target="_blank">Link</a>`;
         }
 
         li.innerHTML = content;
